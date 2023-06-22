@@ -53,6 +53,31 @@ class StudentSubjectsScoreAPIView(APIView):
         student_last_name = request.data.get("last_name", None)
         subjects_title = request.data.get("subject_title", None)
         score = request.data.get("score", None)
+        
+        if not (student_first_name and student_last_name and subjects_title and score):
+            return Response("Incomplete payload data.", status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate data types and values
+        if (
+                not isinstance(student_first_name, str)
+                or not isinstance(student_last_name, str)
+                or not isinstance(subjects_title, str)
+                or not isinstance(score, (int, float))
+        ):
+            return Response("Invalid data types in the payload.", status=status.HTTP_400_BAD_REQUEST)
+
+        if not (0 <= score <= 100):
+            return Response("Invalid score. Score must be between 0 and 100.", status=status.HTTP_400_BAD_REQUEST)
+
+        
+        
+
+        # Update or create the student's score
+        # Replace this with your logic to update or create the score in the database
+        # Update the score for the existing student-subject combination or create a new score row
+        # Ensure the credit remains unchanged during an update
+        # Return the relevant data in the response
+        
 
         # # Filter Objects Example
         # DataModel.objects.filter(filed_1=value_1, filed_2=value_2, filed_2=value_3)

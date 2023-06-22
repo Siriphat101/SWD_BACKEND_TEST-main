@@ -7,10 +7,10 @@ header = {"Content-Type": "application/json"}
 
 
 def test_create_student_score():
-    data = {"first_name": "",
-            "last_name": "",
-            "subject_title": "",
-            "score": 0
+    data = {"first_name": "first_name",
+            "last_name": "last_name",
+            "subject_title": "Math",
+            "score": 50
             }
 
     response = requests.post(url=f'{host}/student_score/', headers=header, data=json.dumps(data))
